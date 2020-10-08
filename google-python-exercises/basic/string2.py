@@ -41,8 +41,11 @@ def not_bad(s):
     return s
   elif 'not' in s and 'bad' not in s:
     return s
+  elif s.endswith('bad!'):
+    return s.replace(s[s.find('not'):], 'good!')
+    pass
   else:
-    return s.replace(s[s.find('not'):-1], 'good')
+    return s.replace(s[s.find('not'):], 'good')
 
 
 
@@ -55,8 +58,29 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
+  import math
   # +++your code here+++
-  return
+  if len(a) % 2 == 0 and len(b) % 2 == 0:
+    front_a = a[:int(len(a)/2)]
+    back_a = a[int(len(a)/2):]
+    front_b = b[:int(len(b)/2)]
+    back_b = b[int(len(b)/2)]
+    return front_a + front_b + back_a + back_b
+  elif len(a) % 2 != 0 and len(b) % 2 != 0:
+    front_a = a[:math.ceil(len(a)/2)]
+    back_a = a[math.ceil(len(a)/2):]
+    front_b = b[:math.ceil(len(b)/2)]
+    back_b = b[math.ceil(len(b)/2):]
+    return front_a + front_b + back_a + back_b
+  elif len(a) % 2 == 0 and len(b) % 2 != 0:
+    front_a = a[:int(len(a) / 2)]
+    back_a = a[int(len(a) / 2):]
+    front_b = b[:math.ceil(len(b) / 2)]
+    back_b = b[math.ceil(len(b) / 2):]
+    return front_a + front_b + back_a + back_b
+
+
+
 
 
 # Simple provided test() function used in main() to print
